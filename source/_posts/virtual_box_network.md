@@ -1,7 +1,7 @@
 ---
 title: VirtualBox中CentOS网络配置
 thumbnail: /img/mine/Samui01.jpeg
-date: 2017-05-28
+date: 2017-05-28 12:00:00
 tags: 
   - VirtualBox
   - CentOS

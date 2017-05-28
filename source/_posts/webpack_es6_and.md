@@ -1,6 +1,6 @@
 ---
 title: 启动一个 Webpack + ES6 + React + CSSModule Web应用拢共分几步
-date: 2017-05-28
+date: 2017-05-28 13:00:00
 thumbnail: /img/mine/flight_cloud_gaoxin.jpeg
 tags:
   - frontend
