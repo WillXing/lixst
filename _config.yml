@@ -38,11 +38,11 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
-  line_number: true
-  auto_detect: false
-  tab_replace:
-
+  enable: false
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'COY'
+  line_number: false
 # Category & Tag
 default_category: uncategorized
 category_map:

@@ -1,6 +1,7 @@
 ---
 title: 启动一个 Webpack + ES6 + React + CSSModule Web应用拢共分几步
 date: 2017-05-28
+thumbnail: /img/mine/flight_cloud_gaoxin.jpeg
 tags:
   - frontend
   - javascript
@@ -15,21 +16,29 @@ tags:
 **首先需要有[NodeJS](nodejs.org)环境**
 
 ### 全局安装Webpack 
-  
-    npm i webpack -g 
+
+```bash
+npm i webpack -g 
+```
 
 ### 创建并初始化项目 
 
-    mkdir project
-    cd project
-    npm init 
-    #init之后熟悉的话可以自己填填内容，不熟悉的话一路回车 
+```bash
+mkdir project
+cd project
+npm init 
+#init之后熟悉的话可以自己填填内容，不熟悉的话一路回车 
+```
+
 ### 安装项目依赖
 
-    # 在Project根目录下
-    npm i webpack babel-core babel-loader babel-preset-es2015 babel-preset-react extract-text-webpack-plugin html-webpack-plugin --save-dev
-    npm i style-loader css-loader --save-dev
-    npm i react react-dom --save
+```bash
+# 在Project根目录下
+npm i webpack babel-core babel-loader babel-preset-es2015 babel-preset-react extract-text-webpack-plugin html-webpack-plugin --save-dev
+npm i style-loader css-loader --save-dev
+npm i react react-dom --save
+```
+
 > 依赖简介: 
 >  webpack **打包工具**
 >  babel-core, babel-loader, babel-preset-es2015, babel-preset-react **用来Compile ES6, React**
@@ -39,69 +48,77 @@ tags:
 	
 ### Babel配置`.babelrc`
 
-	# 在Project根目录下
-	touch .babelrc
-	
+```bash
+# 在Project根目录下
+touch .babelrc
+```
+
 在`.babelrc`中加入如下内容
-	
-	{
-    "presets": ["es2015", "react"]
-	}
+
+```json	
+{
+  "presets": ["es2015", "react"]
+}
+```
 	
 ### Webpack配置`webpack.config.babel.js`	
 
-    mkdir build
-    touch build/webpack.config.babel.js
+```bash
+mkdir build
+touch build/webpack.config.babel.js
+```
 
 在`webpack.config.babel.js`中加入如下内容
-    
-    import webpack from 'webpack'
-    import HtmlWebpackPlugin from 'html-webpack-plugin'
-    import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin'
-    
-    export default {
-      context: __dirname + '/../src',
-      entry: {
-      //JS的入口
-        app: "./index.jsx"
+
+```js
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin'
+
+export default {
+  context: __dirname + '/../src',
+  entry: {
+  //JS的入口
+    app: "./index.jsx"
+  },
+  output: { 
+  //JS输出位置
+    filename: '[name].js',
+    path: __dirname + '/../dist'
+  },
+  module: {
+    loaders: [
+    //Loader 的配置
+      {
+      //Babel loader 用于编译ES2015的语法
+          test: /\.jsx$/,
+          loader: 'babel',
+          exclude: /node_modules/
       },
-      output: { 
-      //JS输出位置
-        filename: '[name].js',
-        path: __dirname + '/../dist'
-      },
-      module: {
-        loaders: [
-        //Loader 的配置
-          {
-          //Babel loader 用于编译ES2015的语法
-              test: /\.jsx$/,
-              loader: 'babel',
-              exclude: /node_modules/
-          },
-          {
-          //CSS Module需要如下配置
-            test: /\.css/,
-            loader: ExtractTextWebpackPlugin.extract(
-              'style',
-              'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
-            )
-          }
-        ]
-      },
-      plugins: [
-        new ExtractTextWebpackPlugin('[name].css', { allChunks: true }), //CSS相关
-        new HtmlWebpackPlugin({
-        //HTML的相关配置
-          filename: 'index.html',
-          template: 'index.html',
-          inject: true,
-          hash: true,
-          chunks: ['app']
-        })
-      ]
-    }
-	
+      {
+      //CSS Module需要如下配置
+        test: /\.css/,
+        loader: ExtractTextWebpackPlugin.extract(
+          'style',
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+        )
+      }
+    ]
+  },
+  plugins: [
+    new ExtractTextWebpackPlugin('[name].css', { allChunks: true }), //CSS相关
+    new HtmlWebpackPlugin({
+    //HTML的相关配置
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true,
+      hash: true,
+      chunks: ['app']
+    })
+  ]
+}
+```
+
 ### 创建应用代码
 
 我们的实例Example目录结构大概如下
@@ -115,66 +132,73 @@ tags:
     └── index.jsx
 
 * `index.html` 内容
-		
-		<!doctype html>
-		<html lang="en">
-		<head>
-		    <meta charset="UTF-8">
-		    <title>Demo</title>
-		</head>
-		<body>
-		<div id="app"></div>
-		</body>
-		</html>
+
+```html	
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>
+```
 
 * `index.jsx` 内容
 
-		import React from 'react'
-		import styles from './index.css'
-		import { render } from 'react-dom'
+```jsx
+import React from 'react'
+import styles from './index.css'
+import { render } from 'react-dom'
 
-		class SearchBox extends React.Component {
-		  render() {
-		    return <form className={styles.search_container}>
-		      <input className={styles.search_box} type="text"/>
-		      <input className={styles.search_button} type="submit"/>
-		    </form>
-		  }
-		}
-		
-		class Home extends React.Component {
-		  render() {
-		    return <SearchBox/>
-		  }
-		}
-		
-		render(<Home/>, document.getElementById('app'))
+class SearchBox extends React.Component {
+  render() {
+    return <form className={styles.search_container}>
+      <input className={styles.search_box} type="text"/>
+      <input className={styles.search_button} type="submit"/>
+    </form>
+  }
+}
+
+class Home extends React.Component {
+  render() {
+    return <SearchBox/>
+  }
+}
+
+render(<Home/>, document.getElementById('app'))
+```
 
 * `index.css` 内容
 
-		.search_container {
-		  text-align: center;
-		}		
-		.search_box {
-		  background-color: #d8d8d8;
-		  border: 0;
-		  border-radius: 10px;
-		  height: 50px;
-		  padding: 0 20px;
-		}
-		.search_button {
-		  height: 35px;
-		  width: 100px;
-		  border: 0;
-		  margin-left: 20px;
-		  border-radius: 10px;
-		  background-color: #ccffcc;
-		}
-		
+```css
+.search_container {
+  text-align: center;
+}		
+.search_box {
+  background-color: #d8d8d8;
+  border: 0;
+  border-radius: 10px;
+  height: 50px;
+  padding: 0 20px;
+}
+.search_button {
+  height: 35px;
+  width: 100px;
+  border: 0;
+  margin-left: 20px;
+  border-radius: 10px;
+  background-color: #ccffcc;
+}
+```
+
 ### 使用webpack进行编译
 
-    webpack --config build/webpack.config.babel.js
-	
+```bash
+webpack --config build/webpack.config.babel.js
+```
 如果不出意外，那你应该可以看见在你项目下的`dist`目录，有编译之后的代码了。
 	
 ## 	最后
