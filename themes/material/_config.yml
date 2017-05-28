@@ -160,13 +160,13 @@ materialcdn:
 # Available value of "use":
 #     duoshuo | disqus | disqus_click | changyan
 comment:
-    use:
-    shortname:
-    duoshuo_thread_key_type: path
-    duoshuo_embed_js_url: "https://static.duoshuo.com/embed.js"
-    changyan_appid:
-    changyan_conf:
-    changyan_thread_key_type: path
+    use: disqus_click
+    shortname: lixst
+    # duoshuo_thread_key_type: path
+    # duoshuo_embed_js_url: "https://static.duoshuo.com/embed.js"
+    # changyan_appid:
+    # changyan_conf:
+    # changyan_thread_key_type: path
 # Search Systems
 # Available value:
 #     swiftype | google | local
