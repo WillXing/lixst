@@ -89,7 +89,7 @@ card_elevation: 2
 
 # SNS Menu
 sns:
-    email: will.xing@outlook.com
+    email: Contact
     weibo:
     instagram:
     tumblr:
@@ -113,7 +113,7 @@ sns_share:
 sidebar:
     dropdown:
         Email Me:
-            link: "will.xing@outlook.com"
+            link: "mailto:will.xing@outlook.com"
             icon: email
     homepage:
         use: true
