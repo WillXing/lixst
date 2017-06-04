@@ -76,3 +76,8 @@ deploy:
   host: 119.28.82.116
   user: root
   root: /uapp/httpd/htdocs/blog
+
+sitemap: 
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
