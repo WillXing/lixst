@@ -27,8 +27,8 @@ scheme: Paradox
 # UI & UX: slogan, color, effect
 uiux:
     slogan: 
-        - "Star's List"
-        - "and River Running"
+        - "Young Driver"
+        - "Yellow Star"
     theme_color: "#0288D1"
     theme_sub_color: "#0277BD"
     hyperlink_color: "#0277BD"
