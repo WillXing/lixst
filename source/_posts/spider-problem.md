@@ -142,6 +142,7 @@ character-set-server = utf8
 2. 创建数据库的时候charset setting：`character set utf8 collate utf8_general_ci;`
 3. 创建表的时候加入charset setting: `default charset=utf8`
 4. 代码中加入charset setting: `# -- coding: UTF-8 --`
+5. 如果是使用`MySQLdb`链接库，在创建链接时设置`charset="utf8"`
 
 
 ### 总结
